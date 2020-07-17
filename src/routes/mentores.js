@@ -4,16 +4,15 @@ const router = express.Router()
     //un router es conjunto o subconjunto de rutas
     //funciona basicamente como lo hace app
 
-const koders = require('../usecases/koders')
-const mentor = require('./mentores')
+const mentors = require('../usecases/mentores')
 
 router.get('/', async(request, response) => {
     try {
-        const allKoders = await koders.getAll()
+        const allMentors = await mentors.getAllMentor()
         response.json({
             succes: true,
             data: {
-                koders: allKoders
+                mentors: allMentors
             }
         })
     } catch (error) {
@@ -26,12 +25,12 @@ router.get('/', async(request, response) => {
 })
 router.post('/', async(request, response) => {
     try {
-        const newKoderData = request.body
-        const newKoder = await koders.create(newKoderData)
+        const newMentorData = request.body
+        const newMentor = await mentors.createMentor(newMentorData)
         response.json({
             succes: true,
             data: {
-                newKoder
+                newMentor
             }
         })
     } catch (error) {
@@ -45,13 +44,13 @@ router.post('/', async(request, response) => {
 
 router.patch('/:id', async(request, response) => {
     try {
-        const newKoderData = request.body
-        const idKoder = request.params.id
-        const newKoder = await koders.update(idKoder, newKoderData)
+        const newMentorData = request.body
+        const id = request.params.id
+        const mentor = await mentors.updateMentor(id, newMentorData)
         response.json({
             succes: true,
             data: {
-                newKoder
+                mentor
             }
         })
     } catch (error) {
@@ -65,12 +64,12 @@ router.patch('/:id', async(request, response) => {
 
 router.delete('/:id', async(request, response) => {
     try {
-        const deleteKoderId = request.params.id
-        const koderDelete = await koders.deleteKoder(deleteKoderId)
+        const deleteId = request.params.id
+        const mentorDelete = await mentors.deleteMentor(deleteId)
         response.json({
             succes: true,
             data: {
-                koderDelete
+                mentorDelete
             }
         })
     } catch (error) {
@@ -81,5 +80,6 @@ router.delete('/:id', async(request, response) => {
         })
     }
 })
+
 
 module.exports = router

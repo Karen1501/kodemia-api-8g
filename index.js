@@ -1,4 +1,5 @@
 // Este archivo debe poner en marcha la app
+require('dotenv').config() //forma corta y mas usada iniciar dotenv
 
 const dbConnect = require('./src/lib/db')
 const server = require('./src/server')

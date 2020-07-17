@@ -17,14 +17,18 @@ function create(koderData) {
     return Koders.create(koderData)
 }
 
-function update(koderData) {
-    return Koders.update(koderData)
+function update(id, data) {
+    return Koders.findByIdAndUpdate(id, data)
 }
 
+function deleteKoder(id) {
+    return Koders.findByIdAndRemove({ _id: id })
+}
 
 
 module.exports = {
     getAll,
     create,
-    update
+    update,
+    deleteKoder
 }
